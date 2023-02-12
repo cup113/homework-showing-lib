@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:attributeGroup name="bg-attr">
+    <xs:attribute name="v" type="xs:positiveInteger"></xs:attribute>
+    <xs:attribute name="color" type="xs:string"></xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="a">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0">
+        <xs:any></xs:any>
+      </xs:sequence>
+      <xs:attribute name="href" use="required"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="b">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0">
+        <xs:any></xs:any>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bg">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0">
+        <xs:any></xs:any>
+      </xs:sequence>
+      <xs:attributeGroup ref="bg-attr"></xs:attributeGroup>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="del">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0">
+        <xs:any></xs:any>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="i">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0">
+        <xs:any></xs:any>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="note">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0">
+        <xs:any></xs:any>
+      </xs:sequence>
+      <xs:attribute name="v" type="xs:positiveInteger" use="required"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="img">
+    <xs:complexType>
+      <xs:attribute name="src" type="xs:anyURI" use="required"></xs:attribute>
+      <xs:attribute name="alt" type="xs:string" use="required"></xs:attribute>
+      <xs:attribute name="w" type="xs:positiveInteger"></xs:attribute>
+      <xs:attribute name="h" type="xs:positiveInteger"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Homework">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Meta">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Lang" type="xs:language"></xs:element>
+              <xs:element name="Author" type="xs:string"></xs:element>
+              <xs:element name="Id" type="xs:string"></xs:element>
+              <xs:element name="Date" type="xs:string"></xs:element>
+              <xs:element name="Created" type="xs:string"></xs:element>
+              <xs:element name="Mods" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Mod" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType mixed="true">
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="color" type="xs:string"></xs:attribute>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Main">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Subject" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Item" minOccurs="1" maxOccurs="unbounded">
+                      <xs:complexType mixed="true">
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                          <xs:any></xs:any>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:ID" use="required"></xs:attribute>
+                        <xs:attribute name="new" type="xs:positiveInteger"></xs:attribute>
+                        <xs:attribute name="deleted" type="xs:positiveInteger"></xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Notes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Note" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType mixed="true">
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:any></xs:any>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

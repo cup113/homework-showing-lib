@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../src/hs-xml.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<Homework>
+  <Meta>
+    <Lang>zh-CN</Lang>
+    <Author>Jason Li</Author>
+    <Id>F4E20187-B224-E31D-D087-DD27840140A7</Id>
+    <Date>2023-02-09</Date>
+    <Created>18:00</Created>
+    <Mods>
+      <Mod>18:15</Mod>
+      <Mod color="skyblue">18:30</Mod>
+    </Mods>
+  </Meta>
+  <Main>
+    <Subject name="语文">
+      <Item id="a1" deleted="1">
+        我被删除了
+        <b>加粗</b>
+        <bg color="khaki">单纯是为了</bg>
+        <bg v="1">加背景</bg>
+        这有个注释
+        <note v="1"/>
+      </Item>
+      <Item id="a2">
+        <del>1</del>
+      </Item>
+    </Subject>
+    <Subject name="数学">
+      <Item id="b1" new="2">
+        <i>斜体</i>
+        普通字体
+      </Item>
+    </Subject>
+    <Subject name="英语">
+      <Item id="c1">默写</Item>
+    </Subject>
+  </Main>
+  <Notes>
+    <Note>
+      这是注释
+      <a href="https://www.baidu.com">去百度</a>
+      <img src="https://www.baidu.com/favicon.ico" alt="百度图标" w="16" h="16" />
+    </Note>
+  </Notes>
+</Homework>
