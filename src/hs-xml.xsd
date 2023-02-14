@@ -46,7 +46,7 @@
       <xs:sequence minOccurs="0">
         <xs:any></xs:any>
       </xs:sequence>
-      <xs:attribute name="v" type="xs:positiveInteger" use="required"></xs:attribute>
+      <xs:attribute name="ref" type="xs:positiveInteger" use="required"></xs:attribute>
     </xs:complexType>
   </xs:element>
   <xs:element name="img">

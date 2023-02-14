@@ -29,15 +29,20 @@ th {
 
 .hs-row-3>td:nth-child(2),
 .hs-row-2>td:nth-child(1) {
-    min-width: 2rem;
+    min-width: 3rem;
 }
 
 .hs-row-3>td:nth-child(3),
 .hs-row-2>td:nth-child(2) {
     padding: 0 4px;
-    max-width: 15rem;
+    min-width: 12rem;
+    max-width: 24rem;
 }
 
 .hs-inline-note {
     color: #0000ff;
+}
+
+td strong {
+    color: #774400;
 }

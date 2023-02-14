@@ -67,7 +67,7 @@ interface XmlInlineImageElement extends XmlSelfClosingElement {
 
 interface XmlInlineNoteElement extends XmlSelfClosingElement {
   tagName: 'note',
-  attributes: { v: string },
+  attributes: { ref: string },
 }
 
 export type XmlInlineElement = string | XmlInlineAnchorElement | XmlInlineBackgroundElement | XmlInlineBoldElement | XmlInlineDeleteElement | XmlInlineImageElement | XmlInlineImageElement | XmlInlineItalicElement | XmlInlineNoteElement;

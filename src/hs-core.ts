@@ -37,7 +37,7 @@ export interface HcObject extends Object {
   notes: string[],
 }
 
-const DEFAULT_COLORS = ["#ff9900", "#00ffdd", "#00dd00", "#9999ff", "#ff6666"];
+const DEFAULT_COLORS = ["#ffff22", "#00ffee", "#00ff00", "#9999ff", "#ff6666"];
 
 export function hc_compile(_content: string): HcObject {
   const parsedXml = txml_parse(_content);
@@ -78,7 +78,7 @@ export function hc_compile(_content: string): HcObject {
           return `<img src="${el.attributes.src}" alt="${el.attributes.alt}"${widthStr}${heightStr}>`;
         }
         case 'note':
-          return `<sup class="hs-inline-note">[${el.attributes.v}]</sup>`;
+          return `<sup class="hs-inline-note">[${el.attributes.ref}]</sup>`;
       }
     }).join("");
   }
@@ -189,14 +189,13 @@ function get_html_head(meta: HcMeta) {
 export function hso_to_html_file(obj: HcObject): string {
   let { meta } = obj;
   let count = 0;
-  let lastEditTime = meta.modifies.length > 0 ? meta.modifies[meta.modifies.length - 1].time : meta.created;
-  let subjectsHtml = obj.subjects.map(subject => subject.items.map((item, index) => {
+  let subjectsHtml: string = obj.subjects.map(subject => subject.items.map((item, index) => {
     ++count;
     let text = item.text;
     if (item.deleted)
       text = `<del style="background-color: ${meta.modifies[item.deleted - 1].color};">${text}</del>`;
     if (item.new)
-      text = `<span style="background-color: ${meta.modifies[item.new - 1].color};"></span>`
+      text = `<span style="background-color: ${meta.modifies[item.new - 1].color};">${text}</span>`
     let lastTwoCell = `<td>${count}</td><td>${text}</td>`;
     if (index === 0)
       return `<tr class="hs-row-3 hs-subject"><td rowspan="${subject.items.length}">${subject.name}</td>${lastTwoCell}</tr>`;
@@ -204,14 +203,14 @@ export function hso_to_html_file(obj: HcObject): string {
       return `<tr class="hs-row-2 hs-subject">${lastTwoCell}</tr>`;
   }).join("\n")).join("\n");
   count = 0;
-  let notesHtml = obj.notes.map((note, index) => {
+  let notesHtml: string = obj.notes.map((note, index) => {
     ++count;
     let lastTwoCell = `<td>${count}</td><td>${note}</td>`;
     if (index === 0)
       return `<tr class="hs-row-3 hs-notes"><td rowspan="${obj.notes.length}">Notes</td>${lastTwoCell}</tr>`;
     else
       return `<tr class="hs-row-2 hs-notes">${lastTwoCell}</tr>`;
-  });
+  }).join("\n");
   let editNote = `${obj.meta.created} created` + obj.meta.modifies.map(modify => {
     return ` / <strong style="background-color: ${modify.color}">${modify.time} modified</strong>`;
   }).join("");
@@ -219,7 +218,7 @@ export function hso_to_html_file(obj: HcObject): string {
 <html lang="${meta.lang}">
 ${get_html_head(meta)}
 <body>
-<p class="hs-header">Posted at ${lastEditTime}</p>
+<p class="hs-header">Posted at ${new Date().toLocaleString()}</p>
 <table>
 <thead>
 <tr>

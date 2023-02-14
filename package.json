@@ -1,6 +1,6 @@
 {
   "name": "homework-showing",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Homework showing",
   "main": "dist/hs-cli.mjs",
   "scripts": {

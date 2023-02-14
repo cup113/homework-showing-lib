@@ -20,7 +20,7 @@
         <bg color="khaki">单纯是为了</bg>
         <bg v="1">加背景</bg>
         这有个注释
-        <note v="1"/>
+        <note ref="1"/>
       </Item>
       <Item id="a2">
         <del>1</del>
