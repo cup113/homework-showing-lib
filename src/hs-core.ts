@@ -63,7 +63,7 @@ export function hc_compile(_content: string): HcObject {
         case 'bg': {
           let bgColor: string;
           if (el.attributes.color === undefined)
-            bgColor = meta.modifies[parseInt(el.attributes.v)].color;
+            bgColor = meta.modifies[parseInt(el.attributes.v) - 1].color;
           else
             bgColor = el.attributes.color;
           return `<span style="background-color: ${bgColor};">${hc_parse_inline(el.children)}</span>`;
@@ -192,9 +192,9 @@ export function hso_to_html_file(obj: HcObject): string {
   let subjectsHtml: string = obj.subjects.map(subject => subject.items.map((item, index) => {
     ++count;
     let text = item.text;
-    if (item.deleted)
+    if (item.deleted !== undefined)
       text = `<del style="background-color: ${meta.modifies[item.deleted - 1].color};">${text}</del>`;
-    if (item.new)
+    if (item.new !== undefined)
       text = `<span style="background-color: ${meta.modifies[item.new - 1].color};">${text}</span>`
     let lastTwoCell = `<td>${count}</td><td>${text}</td>`;
     if (index === 0)

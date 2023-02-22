@@ -1,6 +1,6 @@
 {
   "name": "homework-showing",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Homework showing",
   "main": "dist/hs-cli.mjs",
   "scripts": {
@@ -8,7 +8,7 @@
     "preview": "tsc && node ./dist/hs-cli.mjs"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.14.0",
     "txml": "^5.1.1"
   },
   "keywords": [

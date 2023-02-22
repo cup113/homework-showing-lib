@@ -55,13 +55,23 @@ export function hm_compile(content: string, prevObj?: HmObject): HmObject {
     const prevSubject = prevMap?.get(subject.name);
     return {
       name: subject.name,
-      items: subject.items.map(item => prevSubject?.get(item.id) ?? {
-        ...item,
-        status: ItemStatus.NotStarted,
-        minutesSpent: 0,
-        minutesEstimated: 0,
-        progress: 0,
-      } satisfies HmItem),
+      items: subject.items.map(item => {
+        const prevItem = prevSubject?.get(item.id);
+        if (prevItem !== undefined)
+          return {
+            ...prevItem,
+            deleted: item.deleted,
+            new: item.new,
+            text: item.text,
+          } satisfies HmItem;
+        return {
+          ...item,
+          status: ItemStatus.NotStarted,
+          minutesSpent: 0,
+          minutesEstimated: 0,
+          progress: 0,
+        } satisfies HmItem
+      }),
     };
   });
   let ans = {
@@ -71,7 +81,9 @@ export function hm_compile(content: string, prevObj?: HmObject): HmObject {
     notes: hcObj.notes,
     subjects,
   }
-  if (prevObj !== undefined) {
+  if (prevMap !== undefined) {
+    if (prevObj === undefined)
+      throw Error("PrevObj should exist when prevMap exists.");
     ans.minutesBuffer = prevObj.minutesBuffer;
     ans.timeBackHome = prevObj.timeBackHome;
   }
